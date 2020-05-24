@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'share_with_user'|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'share_with_user'|trans }}</h1>
+
+    {{ form_start(form) }}
+    {{ form_row(form.sharedWithUser) }}
+    <button class="btn btn-outline-blue">{{ button_label|default('Save') }}</button>
+    {{ form_end(form) }}
+
+    <br><a class="btn btn-orange" href="{{ path('phone_book_index_all') }}">{{ 'back_to_list'|trans }}</a>
+
+{% endblock %}

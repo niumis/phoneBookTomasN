@@ -1,0 +1,37 @@
+log_in: Log in
+please_sign_in: Please sign in
+username: Username
+password: Password
+sign_in: Sign in
+login: Login
+register: Register
+logout: Logout
+save: Save
+base_title: Phone Book
+new_contact: New Contact
+back_to_list: Back to list
+menu_all: All
+menu_own: Own
+menu_shared_with_me: Shared with me
+menu_shared_with_users: Shared with users
+back_to_top: Back to top
+agree_terms: Agree terms
+all_contacts: All contacts
+own_contacts: Own contacts
+show: Show
+edit: Edit
+no_records_found: No records found
+create_new: Create new
+shared_by_users: Shared by users
+shared_by_user: Shared by user
+shared_with_users: Shared with users
+shared_with_user: Shared with user
+full_name: Full name
+phone: Phone
+unshare: Unshare
+edit_contact: Edit contact
+delete: Delete
+id: ID
+share_with_user: Share with user
+contact: Contact
+select_user_you_share: Select user you want to share

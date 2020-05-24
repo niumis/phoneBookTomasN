@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhoneBook index{% endblock %}
+
+{% block body %}
+    <h1>
+        {% if app.request.attributes.get('_route') == 'phone_book_index_all' %}{{ 'all_contacts'|trans }}
+        {% else %}
+            {{ 'own_contacts'|trans }}
+        {% endif %}
+    </h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ 'full_name'|trans }}</th>
+            <th>{{ 'phone'|trans }}</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for userContact in userContacts %}
+            <tr>
+                <td>{{ userContact.fullName }}</td>
+                <td>{{ userContact.phone }}</td>
+                <td>
+                    {% if app.request.attributes.get('_route') == 'phone_book_index_own' %}
+                        <a class="btn btn-sm btn-blue" href="{{ path('phone_book_show', {'id': userContact.id}) }}">
+                            {{ 'show'|trans }}
+                        </a>
+                        <a class="btn btn-sm btn-outline-blue"
+                           href="{{ path('phone_book_edit', {'id': userContact.id}) }}">
+                            {{ 'edit'|trans }}
+                        </a>
+                    {% else %}
+                        &nbsp;
+                    {% endif %}
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{ 'no_records_found'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a class="btn btn-outline-blue" href="{{ path('phone_book_new') }}">{{ 'create_new'|trans }}</a>
+{% endblock %}

@@ -1,0 +1,11 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ app.user.username }} - {{ 'new_contact'|trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'new_contact'|trans }}</h1>
+
+    {{ include('phone_book/_form.html.twig') }}
+
+    <br><a class="btn btn-orange" href="{{ path('phone_book_index_all') }}">{{ 'back_to_list'|trans }}</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PhoneBook index{% endblock %}
+
+{% block body %}
+    <h1>{{ 'shared_with_users'|trans }}</h1>
+
+    <table class="table">
+        <thead>
+        <tr>
+            <th>{{ 'full_name'|trans }}</th>
+            <th>{{ 'phone'|trans }}</th>
+            <th>{{ 'shared_with_user'|trans }}</th>
+            <th>&nbsp;</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for userContact in userContacts %}
+            <tr>
+                <td>{{ userContact.phoneBook.fullName }}</td>
+                <td>{{ userContact.phoneBook.phone }}</td>
+                <td>{{ userContact.sharedWithUser.username }}</td>
+                <td>
+                    <a class="btn btn-sm btn-danger"
+                       href="{{ path('phone_book_unshare', {'id': userContact.id}) }}">{{ 'unshare'|trans }}
+                    </a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="4">{{ 'no_records_found'|trans }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

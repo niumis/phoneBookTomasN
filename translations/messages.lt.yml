@@ -1,0 +1,37 @@
+log_in: Prisijungti
+please_sign_in: Prašau prisijungti
+username: Vartotojo vardas
+password: Slaptažodis
+sign_in: Prisijungti
+login: Prisijungti
+register: Registruotis
+logout: Atsijungti
+save: Išsaugoti
+base_title: Telefonų knyga
+new_contact: Naujas kontaktas
+back_to_list: Atgal į sarašą
+menu_all: Visi kontaktai
+menu_own: Mano kontaktai
+menu_shared_with_me: Su manim pasidalinti
+menu_shared_with_users: Aš pasidalinau
+back_to_top: Į viršų
+agree_terms: Sutinku su salygomis
+all_contacts: Visi kontaktai
+own_contacts: Mano kontaktai
+show: Rodyti
+edit: Redaguoti
+no_records_found: Įrašų nerasta
+create_new: Sukurti naują
+shared_by_users: Su manim pasidalinti
+shared_by_user: Su manim pasidalino
+shared_with_users: Aš pasidalinau
+shared_with_user: Aš pasidalinau su
+full_name: Pilnas vardas
+phone: Telefonas
+unshare: Nebesidalinti
+edit_contact: Redaguoti kontaktą
+delete: Ištrinti
+id: ID
+share_with_user: Pasidalinti su vartotoju
+contact: Kontaktas
+select_user_you_share: Pasirinkite vartotoją su kuriuo norite pasidalinti kontaktu

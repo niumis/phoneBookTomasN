@@ -23,7 +23,7 @@
             <tr>
                 <td>{{ userContact.fullName }}</td>
                 <td>{{ userContact.phone }}</td>
-                <td>
+                <td class="float-md-right">
                     {% if app.request.attributes.get('_route') == 'phone_book_index_own' %}
                         <a class="btn btn-sm btn-blue" href="{{ path('phone_book_show', {'id': userContact.id}) }}">
                             {{ 'show'|trans }}
@@ -31,6 +31,14 @@
                         <a class="btn btn-sm btn-outline-blue"
                            href="{{ path('phone_book_edit', {'id': userContact.id}) }}">
                             {{ 'edit'|trans }}
+                        </a>
+                        <a class="btn btn-sm btn btn-success"
+                           href="{{ path('phone_book_share', {'id': userContact.id}) }}">
+                            {{ 'share_with_user'|trans }}
+                        </a>
+                        <a class="btn btn-sm btn btn-danger"
+                           href="{{ path('phone_book_delete', {'id': userContact.id}) }}">
+                            {{ 'delete'|trans }}
                         </a>
                     {% else %}
                         &nbsp;

@@ -6,6 +6,7 @@ use App\Repository\PhoneBookRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PhoneBookRepository::class)
@@ -20,11 +21,25 @@ class PhoneBook
     private $id;
 
     /**
+     * @Assert\Length(
+     *     min = 1,
+     *     minMessage = "Your first name must be at least {{ limit }} characters long",
+     *     allowEmptyString = false
+     * )
+     *
      * @ORM\Column(type="string", length=255)
      */
     private $fullName;
 
     /**
+     * @Assert\Length(
+     *     min = 12,
+     *     max = 12,
+     *     minMessage = "Your first name must be at least {{ limit }} characters long",
+     *     maxMessage = "Your first name cannot be longer than {{ limit }} characters",
+     *     allowEmptyString = false
+     * )
+     *
      * @ORM\Column(type="string", length=17)
      */
     private $phone;

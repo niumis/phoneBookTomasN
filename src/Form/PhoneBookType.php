@@ -33,6 +33,7 @@ class PhoneBookType extends AbstractType
                 null,
                 [
                     'label' => 'phone',
+                    'data' => '+37061234567',
                 ]
             );
     }

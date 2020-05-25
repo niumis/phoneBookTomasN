@@ -159,10 +159,15 @@ class PhoneBookController extends AbstractController
      * @param PhoneBook $phoneBook
      *
      * @return Response
+     * @throws \Exception
      */
     public function show(PhoneBook $phoneBook): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($phoneBook->getUser() !== $this->getUser()) {
+            throw new \Exception('Not allow see not self contact');
+        }
 
         return $this->render(
             'phone_book/show.html.twig',
@@ -180,10 +185,15 @@ class PhoneBookController extends AbstractController
      * @param PhoneBook $phoneBook
      *
      * @return Response
+     * @throws \Exception
      */
     public function edit(Request $request, PhoneBook $phoneBook): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($phoneBook->getUser() !== $this->getUser()) {
+            throw new \Exception('Not allow edit not self contact');
+        }
 
         $form = $this->createForm(PhoneBookType::class, $phoneBook);
         $form->handleRequest($request);
@@ -211,10 +221,15 @@ class PhoneBookController extends AbstractController
      * @param PhoneBook $phoneBook
      *
      * @return Response
+     * @throws \Exception
      */
     public function share(Request $request, PhoneBook $phoneBook): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($phoneBook->getUser() !== $this->getUser()) {
+            throw new \Exception('Not allow share not self contact');
+        }
 
         $shared = new Shared();
 
@@ -246,10 +261,15 @@ class PhoneBookController extends AbstractController
      * @param Shared $shared
      *
      * @return Response
+     * @throws \Exception
      */
     public function unshare(Shared $shared): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($shared->getPhoneBook()->getUser() !== $this->getUser()) {
+            throw new \Exception('Not allow unshare not self contact');
+        }
 
         $entityManager = $this->getDoctrine()->getManager();
         $entityManager->remove($shared);
@@ -259,17 +279,50 @@ class PhoneBookController extends AbstractController
     }
 
     /**
-     * @Route("/{_locale<%app.supported_locales%>}/{id}", name="phone_book_delete",
+     * @Route("/{_locale<%app.supported_locales%>}/{id}/delete", name="phone_book_delete",
+     *     requirements={"id":"\d+"}, methods={"GET"})
+     *
+     * @param PhoneBook $phoneBook
+     *
+     * @return Response
+     * @throws \Exception
+     */
+    public function delete(PhoneBook $phoneBook): Response
+    {
+        $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($phoneBook->getUser() !== $this->getUser()) {
+            throw new \Exception('Not allow delete not self contact');
+        }
+
+        if ($phoneBook->getShareds()->count() > 0) {
+            throw new \Exception('Not allow delete shared contact');
+        }
+
+        $entityManager = $this->getDoctrine()->getManager();
+        $entityManager->remove($phoneBook);
+        $entityManager->flush();
+
+        return $this->redirectToRoute('phone_book_index_all');
+    }
+
+    /**
+     * @Route("/{_locale<%app.supported_locales%>}/{id}", name="phone_book_delete_form",
      *     requirements={"id":"\d+"}, methods={"DELETE"})
      *
      * @param Request   $request
      * @param PhoneBook $phoneBook
      *
      * @return Response
+     * @throws \Exception
      */
-    public function delete(Request $request, PhoneBook $phoneBook): Response
+    public function deleteForm(Request $request, PhoneBook $phoneBook): Response
     {
         $this->denyAccessUnlessGranted('IS_AUTHENTICATED_FULLY');
+
+        if ($phoneBook->getUser() !== $this->getUser()) {
+            throw new \Exception('Not allow delete not self contact');
+        }
 
         if ($this->isCsrfTokenValid('delete'.$phoneBook->getId(), $request->request->get('_token'))) {
             $entityManager = $this->getDoctrine()->getManager();
